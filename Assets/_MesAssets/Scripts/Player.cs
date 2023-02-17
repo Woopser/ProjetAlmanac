@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 
     //Attrivuts 
-    [SerializeField] private float _vitesse = 15;
+    [SerializeField] private float _vitesse = 10;
 
     // Start is called before the first frame update
     private void Start()
