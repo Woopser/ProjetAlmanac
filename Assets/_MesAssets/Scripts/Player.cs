@@ -7,19 +7,25 @@ public class Player : MonoBehaviour
 
     //Attrivuts 
     [SerializeField] private float _vitesse = 10;
+    private EndGame _endGame;
 
     // Start is called before the first frame update
     private void Start()
     {
         //Position de depart du joueur
-        this.transform.position = new Vector3(-13f,1.01f,-13f); //this. est facultatif, mais on va le laiiser lol
+        this.transform.position = new Vector3(-26f,1.01f,-26f); //this. est facultatif, mais on va le laiiser lol
+        _endGame = FindObjectOfType<EndGame>();
     }
 
 
     // Update is called once per frame
     private void Update()
     {
-        MouvementJoueur();
+        if (!_endGame.GetFinis())
+        {
+            MouvementJoueur();
+        }
+        
     }
 
     private void MouvementJoueur()
