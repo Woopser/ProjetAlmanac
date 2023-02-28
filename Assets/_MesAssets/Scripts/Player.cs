@@ -6,26 +6,29 @@ public class Player : MonoBehaviour
 {
 
     //Attrivuts 
-    [SerializeField] private float _vitesse = 10;
+    [SerializeField] private float _vitesse = 100;
     private EndGame _endGame;
+    private Rigidbody _rb;
 
     // Start is called before the first frame update
     private void Start()
     {
         //Position de depart du joueur
-        this.transform.position = new Vector3(-26f,1.01f,-26f); //this. est facultatif, mais on va le laiiser lol
+        this.transform.position = new Vector3(-26f,0.51f,-26f); //this. est facultatif, mais on va le laiiser lol
         _endGame = FindObjectOfType<EndGame>();
+        _rb = GetComponent<Rigidbody>();
     }
 
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
-        if (!_endGame.GetFinis())
-        {
-            MouvementJoueur();
-        }
-        
+        MouvementJoueur();
+    }
+
+    public void FinPartie()
+    {
+        this.gameObject.SetActive(false);
     }
 
     private void MouvementJoueur()
@@ -33,6 +36,6 @@ public class Player : MonoBehaviour
         float positionX = Input.GetAxis("Horizontal");
         float positionZ = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(positionX, 0f, positionZ);
-        this.transform.Translate(direction * Time.deltaTime * _vitesse);
+        _rb.velocity = direction * Time.fixedDeltaTime * _vitesse;
     }
 }

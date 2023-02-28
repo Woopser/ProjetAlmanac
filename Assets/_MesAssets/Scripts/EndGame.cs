@@ -8,11 +8,13 @@ public class EndGame : MonoBehaviour
     //Atribut 
     private bool isFinis = false;
     private GestionJeu _gestionJeu;
+    private Player _player;
 
     // Start is called before the first frame update
     void Start()
     {
         _gestionJeu = FindObjectOfType<GestionJeu>();
+        _player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class EndGame : MonoBehaviour
         {
             SetFinis(true);
             Debug.Log("Game Over votre temps est de " + Time.time + " avec une pénaliter de " + _gestionJeu.GetPoint() + " accrochage, pour un total de " + (_gestionJeu.GetPoint() + Time.time));
-
+            _player.FinPartie();
         }
     }
 }
