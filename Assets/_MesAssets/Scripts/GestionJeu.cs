@@ -11,6 +11,19 @@ public class GestionJeu : MonoBehaviour
     private int _pointage;
     private EndGame _endGame;
 
+    private void Awake()
+    {
+        int nbGestionJeu = FindObjectsOfType<GestionJeu>().Length;
+        if(nbGestionJeu > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void Start()
     {
         Instrucitons();

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
@@ -35,11 +37,24 @@ public class EndGame : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        int indexScene = SceneManager.GetActiveScene().buildIndex;
+        if (indexScene == 1)
         {
-            SetFinis(true);
-            Debug.Log("Game Over votre temps est de " + Time.time + " avec une pénaliter de " + _gestionJeu.GetPoint() + " accrochage, pour un total de " + (_gestionJeu.GetPoint() + Time.time));
-            _player.FinPartie();
+            if (collision.gameObject.tag == "Player")
+            {
+                SetFinis(true);
+                Debug.Log("Game Over votre temps est de " + Time.time + " avec une pénaliter de " + _gestionJeu.GetPoint() + " accrochage, pour un total de " + (_gestionJeu.GetPoint() + Time.time));
+                _player.FinPartie();
+
+            }
+        }
+        else
+        {
+            //Charger la scene suivante 
+            SceneManager.LoadScene(indexScene + 1);
         }
     }
+
+    //Le script de passage d'une zone a l'autre
+
 }
