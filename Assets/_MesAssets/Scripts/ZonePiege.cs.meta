@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 717accb7ef33b7a4f846f446a994f0c1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _piege: {fileID: 6453221048360974549, guid: ab38b72661921134599540c444725428, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
